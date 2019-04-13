@@ -1,0 +1,9 @@
+This is a practice program to manage large amount of airplane parts.
+
+
+This program is dependent on peewee library and MySQLdb/MySQLclient. It is connecting to a local MySQL database.
+
+TODO:
+    change password to file path
+    edit table with Connector
+    create new schema with Connector
