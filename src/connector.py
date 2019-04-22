@@ -36,7 +36,12 @@ class Connector:
         return self.database.close()
 
 
-mysql_db = MySQLDatabase('mydb', host="2605:e000:1c0e:e025:428d:5cff:fe6c:b68c", port=3306, user='Robert', password='(Ti3git)')
+database_details = PassLoader()
+database_details.read_creds()
+passwords = database_details.load_creds()
+
+mysql_db = MySQLDatabase(passwords[0], host=passwords[1], port=int(passwords[2]),
+                        user=passwords[3], password=passwords[4])
 
 
 class BaseModel(Model):
