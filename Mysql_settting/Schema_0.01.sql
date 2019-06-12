@@ -19,7 +19,7 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`Item`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Item` (
+CREATE TABLE IF NOT EXISTS `mydb`.`item` (
   `Key` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `image` VARCHAR(45) NULL,

@@ -14,26 +14,8 @@ class PassLoader:
         passes_file = open(self.path, "r")
         self.cred = [line[:-1] for line in passes_file]
 
-        print(self.cred)
-
     def load_creds(self):
         return self.cred
-
-
-class Connector:
-    def __init__(self):
-        database_details = PassLoader()
-        database_details.read_creds()
-        passwords = database_details.load_creds()
-
-        self.database = MySQLDatabase(passwords[0], host=passwords[1], port=int(passwords[2]),
-                                      user=passwords[3], password=passwords[4])
-
-    def __connect__(self):
-        return self.database.connect(reuse_if_open=True)
-
-    def __close__(self):
-        return self.database.close()
 
 
 database_details = PassLoader()
@@ -45,8 +27,9 @@ mysql_db = MySQLDatabase(passwords[0], host=passwords[1], port=int(passwords[2])
 
 
 class BaseModel(Model):
+
     class Meta:
-        database = mysql_db
+            database = mysql_db
 
 
 class Item(BaseModel):
@@ -57,12 +40,12 @@ class Item(BaseModel):
     plane = TextField()
 
     def print_table(self):
-        return self.select(Item.name)
+        return self.get(self.name == 'test')
 
+    def add_test_item(self):
+        self.create(name='test', xCoor=0, yCoor=0)
 
 if __name__ == '__main__':
-    test = Connector()
-    test.__connect__()
-    print("connecting")
-    test.__close__()
-    print("closeing")
+    x = Item()
+    x.add_test_item()
+    print(x.print_table())
